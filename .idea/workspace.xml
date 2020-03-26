@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="aa7970ab-f48f-4867-9bc1-b3603a6b4e26" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>rodLength</find>
+    </findStrings>
+  </component>
+  <component name="ProjectId" id="1XpTyA0VY5qlDXrkx9kRsj4m3kc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../psychrometry/index.html" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="aa7970ab-f48f-4867-9bc1-b3603a6b4e26" name="Default Changelist" comment="" />
+      <created>1581742287427</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581742287427</updated>
+      <workItem from="1581742288934" duration="4179000" />
+      <workItem from="1582346546690" duration="60000" />
+      <workItem from="1582346646044" duration="3254000" />
+      <workItem from="1582357489033" duration="894000" />
+      <workItem from="1582517245045" duration="246000" />
+      <workItem from="1582518462857" duration="515000" />
+      <workItem from="1582520426202" duration="6545000" />
+      <workItem from="1584009298547" duration="40000" />
+      <workItem from="1584009420473" duration="4441000" />
+      <workItem from="1584058756936" duration="2278000" />
+      <workItem from="1584105193769" duration="5503000" />
+      <workItem from="1584323653310" duration="105000" />
+      <workItem from="1584332611005" duration="83000" />
+      <workItem from="1584963819511" duration="7222000" />
+      <workItem from="1585041779602" duration="17058000" />
+      <workItem from="1585152428584" duration="1329000" />
+      <workItem from="1585236908163" duration="5673000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1585057570042">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585057570042" />
+    <state x="277" y="55" key="SettingsEditor" timestamp="1585057520934">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585057520934" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1585236994995">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1585236994995" />
+  </component>
+</project>
