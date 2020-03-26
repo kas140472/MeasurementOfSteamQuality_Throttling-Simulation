@@ -161,6 +161,15 @@ input#l4spinner{
 
 }
 
+.graph
+{
+	padding-top: 348px;
+	padding-left:250px;
+	position: inherit;
+	left: 313px;
+	top: 505px;
+}
+
 #rotationbutton
 {
 	position: relative;
