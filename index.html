@@ -30,11 +30,6 @@
 
             var canvas = document.getElementById('simscreen'),
                 ctx = canvas.getContext('2d'),
-            imageObj = new Image();
-            imageObj.onload = function () {
-                context.drawImage(imageObj, 10, 60);
-            };
-            imageObj.src = 'graph0.2.png';
                 crankCaseColor = '#9EA18C',
                 pistonColor = '#87CEEB',
                 test='#f4eeff',
@@ -157,7 +152,9 @@
                         ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,piston_y-70);
                         ctx.stroke();
 
-                        // graph y-axis
+                        var image = document.getElementById('graph');
+
+                        /*// graph y-axis
 
                         ctx.beginPath();
                         ctx.strokeStyle = '#17202A';
@@ -175,6 +172,20 @@
                         ctx.lineWidth = 1;
                         ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16-80,left_wall_y_end +20+120);
                         ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16-80+120,left_wall_y_end+20+120);
+                        ctx.stroke();*/
+
+                        // graph liquid
+
+                        ctx.beginPath();
+                        ctx.fillStyle = '#1B4F72';
+                        ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+20,left_wall_y_end +20,28,130);
+                        ctx.stroke();
+
+                        // graph vapor
+
+                        ctx.beginPath();
+                        ctx.fillStyle = '#5D6D7E ';
+                        ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+70,left_wall_y_end +50,28,100);
                         ctx.stroke();
 
                         if(flag === false){
@@ -567,6 +578,7 @@
             <div id="l2slider"></div>
         </div>
     </div>
+    <img class="graph"  src="graph0.2.png" width="150px" height="150px"  alt="graph" id="graph"/>
     <!-- DND-Title of region for controls display -->
     <div id="ctrltitle">CONTROLS</div>
     <!-- Region for User controls of simulation -->
