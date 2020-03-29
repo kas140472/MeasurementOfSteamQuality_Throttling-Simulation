@@ -192,18 +192,34 @@
 
                             //work=/*(Math.round(step)*)*/p2;
                             /*energy=parseInt(heat)-parseInt(work);*/
-                            if(t2==100 && p2==0.1)
-                                energy=2675.8;
-                                x=0.940;
-                            if(t2==150 && p2==0.1)
-                                energy=2776.6;
-                                x=0.990;
+                            if(t2==100 && p2==0.01)
+                            {energy=2687.50;
+                            x=0.94680;}
                             if(t2==100 && p2==0.05)
-                                energy=2682.4;
-                                x=0.9956;
+                            {energy=2682.4;
+                                x=0.94420;}
+                            if(t2==100 && p2==0.09)
+                            {energy=2677.12;
+                                x=0.94150;}
+                            if(t2==125 && p2==0.01)
+                            {energy=2735.25;
+                                x=0.97138;}
+                            if(t2==125 && p2==0.05)
+                            {energy=2731.30;
+                                x=0.96935;}
+                            if(t2==125 && p2==0.09)
+                            {energy=2727.22;
+                                x=0.96720;}
+                            if(t2==150 && p2==0.01)
+                            {energy=2783.00;
+                                x=0.99590;}
                             if(t2==150 && p2==0.05)
-                                energy=2780.2;
-                                x=0.9945;
+                            {energy=2780.20;
+                                x=0.99440;}
+                            if(t2==150 && p2==0.09)
+                            {energy=2777.32;
+                                x=0.99290;}
+
                             if(p2>=.05){
 
                                 step+=0.2;
@@ -212,7 +228,7 @@
                                 document.getElementById("p3").innerHTML="Outlet temperature : "+t2+" °C";
                                 document.getElementById("p4").innerHTML="Enthalpy1 : "+energy+" kJ/kg";
                                 document.getElementById("p5").innerHTML="Enthalpy2 : "+energy+" kJ/kg";
-                                document.getElementById("p6").innerHTML="Quality of steam,x : "+x+".";
+                                document.getElementById("p6").innerHTML="Quality of steam, x : "+x+".";
 
                             }
                             else{
@@ -312,27 +328,47 @@
 
         function enthalpy1_val(){
             //energy=input;
-            if(t2==100 && p2==0.1)
-            {energy=2675.8;}
-            if(t2==150 && p2==0.1)
-            {energy=2776.6;}
+            if(t2==100 && p2==0.01)
+            {energy=2687.50;}
             if(t2==100 && p2==0.05)
-            {energy=2682.4;}
+            {energy=2682.40;}
+            if(t2==100 && p2==0.09)
+            {energy=2677.12;}
+            if(t2==125 && p2==0.01)
+            {energy=2735.25;}
+            if(t2==125 && p2==0.05)
+            {energy=2731.30;}
+            if(t2==125 && p2==0.09)
+            {energy=2727.22;}
+            if(t2==150 && p2==0.01)
+            {energy=2783.00;}
             if(t2==150 && p2==0.05)
-            {energy=2780.2;}
+            {energy=2780.20;}
+            if(t2==150 && p2==0.09)
+            {energy=2777.32;}
             document.getElementById("p4").innerHTML="Enthalpy1 : "+energy+" kJ/kg";
 
         }
         function enthalpy2_val(){
             //energy=input;
-            if(t2==100 && p2==0.1)
-            {energy=2675.8;}
-            if(t2==150 && p2==0.1)
-            {energy=2776.6;}
+            if(t2==100 && p2==0.01)
+            {energy=2687.50;}
             if(t2==100 && p2==0.05)
-            {energy=2682.4;}
+            {energy=2682.40;}
+            if(t2==100 && p2==0.09)
+            {energy=2677.12;}
+            if(t2==125 && p2==0.01)
+            {energy=2735.25;}
+            if(t2==125 && p2==0.05)
+            {energy=2731.30;}
+            if(t2==125 && p2==0.09)
+            {energy=2727.22;}
+            if(t2==150 && p2==0.01)
+            {energy=2783.00;}
             if(t2==150 && p2==0.05)
-            {energy=2780.2;}
+            {energy=2780.20;}
+            if(t2==150 && p2==0.09)
+            {energy=2777.32;}
             document.getElementById("p5").innerHTML="Enthalpy2 : "+energy+" kJ/kg";
 
         }
@@ -340,14 +376,25 @@
         function x_val(){
 
             //work=parseInt(force*rodtravel);
-            if(t2==100 && p2==0.1)
-                x=0.940;
-            if(t2==150 && p2==0.1)
-                x=0.990;
+            if(t2==100 && p2==0.01)
+            {x=0.94680;}
             if(t2==100 && p2==0.05)
-                x=0.9956;
+            {x=0.94420;}
+            if(t2==100 && p2==0.09)
+            {x=0.94150;}
+            if(t2==125 && p2==0.01)
+            {x=0.97138;}
+            if(t2==125 && p2==0.05)
+            {x=0.96935;}
+            if(t2==125 && p2==0.09)
+            {x=0.96720;}
+            if(t2==150 && p2==0.01)
+            {x=0.99590;}
             if(t2==150 && p2==0.05)
-                x=0.9945;
+            {x=0.99440;}
+            if(t2==150 && p2==0.09)
+            {x=0.99290;}
+
             document.getElementById("p6").innerHTML="Quality of steam, x : "+x+" .";
 
         }
@@ -414,10 +461,10 @@
 
             // Variable r1 slider and number input types
 
-            $('#l1slider').slider({ max : 150, min : 100, step : 50 });		    // slider initialisation : jQuery widget
-            $('#l1spinner').spinner({ max : 150, min : 100, step : 50 });		    // number initialisation : jQuery widget
-            $('#l2slider').slider({ max : 0.1, min : 0.05, step : 0.05 });		    // slider initialisation : jQuery widget
-            $('#l2spinner').spinner({ max : 0.1, min : 0.05, step : 0.05 });		    // number initialisation : jQuery widget
+            $('#l1slider').slider({ max : 150, min : 100, step : 25 });		    // slider initialisation : jQuery widget
+            $('#l1spinner').spinner({ max : 150, min : 100, step : 25 });		    // number initialisation : jQuery widget
+            $('#l2slider').slider({ max : 0.09, min : 0.01, step : 0.04 });		    // slider initialisation : jQuery widget
+            $('#l2spinner').spinner({ max : 0.09, min : 0.01, step : 0.04 });		    // number initialisation : jQuery widget
 
             // monitoring change in value and connecting slider and number
             // monitoring change in value and connecting slider and number
