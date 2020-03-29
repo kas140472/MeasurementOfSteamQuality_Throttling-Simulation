@@ -52,7 +52,7 @@
                         ctx.fillStyle = crankCaseColor;
                         ctx.lineWidth = 10;
 
-                        // left cylinder wall
+                        /*// left cylinder wall
 
                         ctx.beginPath();
                         ctx.moveTo(left_wall_x,left_wall_y_start);
@@ -64,7 +64,7 @@
                         ctx.beginPath();
                         ctx.moveTo(right_wall_x,right_wall_y_start);
                         ctx.lineTo(right_wall_x,right_wall_y_end);
-                        ctx.stroke();
+                        ctx.stroke();*/
 
                         // bottom cylinder wall
 
@@ -266,24 +266,24 @@
                             if(p2>.05){
                                 for (step=0;step>-17;step-=0.2)
                                 {//step-=0.2;
-                                document.getElementById("p1").innerHTML="Inlet pressure : 1.5 MPa";
-                                document.getElementById("p2").innerHTML="Outlet pressure : "+p2+" MPa";
-                                document.getElementById("p3").innerHTML="Outlet temperature : "+t2+" °C";
+                                document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
+                                document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+p2+" MPa";
+                                document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+t2+" °C";
                                 document.getElementById("p4").innerHTML="Enthalpy1 : "+energy+" kJ/kg";
                                 document.getElementById("p5").innerHTML="Enthalpy2 : "+energy+" kJ/kg";
-                                document.getElementById("p6").innerHTML="Quality of steam, x : "+x+".";}
+                                document.getElementById("p6").innerHTML="Quality of steam, x1 : "+x+".";}
 
                             }
                             else{
 
                                 for (step=0;step<17;step+=0.2)
                                 {//step-=0.2;
-                                    document.getElementById("p1").innerHTML="Inlet pressure : 1.5 MPa";
-                                    document.getElementById("p2").innerHTML="Outlet pressure : "+p2+" MPa";
-                                    document.getElementById("p3").innerHTML="Outlet temperature : "+t2+" °C";
+                                    document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
+                                    document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+p2+" MPa";
+                                    document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+t2+" °C";
                                     document.getElementById("p4").innerHTML="Enthalpy1 : "+energy+" kJ/kg";
                                     document.getElementById("p5").innerHTML="Enthalpy2 : "+energy+" kJ/kg";
-                                    document.getElementById("p6").innerHTML="Quality of steam, x : "+x+".";}
+                                    document.getElementById("p6").innerHTML="Quality of steam, x1 : "+x+".";}
 
                             }
                         }
@@ -356,20 +356,20 @@
         function p1_val(){
 
             //rodtravel=input;
-            document.getElementById("p1").innerHTML="Inlet pressure : 1.5 MPa";
+            document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
         }
 
         function p2_val(input){
 
             p2=input;
-            document.getElementById("p2").innerHTML="Outlet pressure : "+0+" MPa";
+            document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+0+" MPa";
 
         }
 
         function t2_val(input){
 
             t2=input;
-            document.getElementById("p3").innerHTML="Outlet temperature : "+0+" °C";
+            document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+0+" °C";
 
         }
 
@@ -442,7 +442,7 @@
             if(t2==150 && p2==0.09)
             {x=0.99290;}*/
 
-            document.getElementById("p6").innerHTML="Quality of steam, x : "+0+" .";
+            document.getElementById("p6").innerHTML="Quality of steam, x1 : "+0+" .";
 
         }
 
@@ -673,6 +673,10 @@
         </div>
     </div>
     <img class="graph"  src="graph0.4.png" width="150px" height="150px"  alt="graph" id="graph"/>
+    <img class="state2"  src="throttling_img1.png" width="80px" height="30px"  alt="state2" id="state2"/>
+    <img class="state1"  src="throttling_img2.png" width="80px" height="12px"  alt="state1" id="state1"/>
+    <img class="state11"  src="throttling_img11.png" width="40px" height="8px"  alt="state11" id="state11"/>
+    <img class="state22"  src="throttling_img22.png" width="40px" height="7px"  alt="state22" id="state22"/>
     <!-- DND-Title of region for controls display -->
     <div id="ctrltitle">CONTROLS</div>
     <!-- Region for User controls of simulation -->
