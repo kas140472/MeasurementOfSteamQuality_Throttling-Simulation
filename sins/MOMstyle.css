@@ -206,6 +206,15 @@ input#l4spinner{
 	top: 65px;
 }
 
+.state3
+{
+	padding-top: 280px;
+	padding-left:130px;
+	position: absolute;
+	left: 38px;
+	top: 140px;
+}
+
 #rotationbutton
 {
 	position: relative;
