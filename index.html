@@ -39,12 +39,7 @@
                 right_wall_x=450,
                 right_wall_y_start=100,
                 right_wall_y_end=250
-            piston_width=right_wall_x-right_wall_x,
-                piston_height = 0,
-                piston_x=100,
-                piston_y=250,
-
-
+      
                 cylinder = {
                     draw : function () {
 
@@ -72,8 +67,8 @@
                         ctx.strokeStyle =crankCaseColor;
                         ctx.fillStyle = crankCaseColor;
                         ctx.lineWidth = 17;
-                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16,piston_y);
-                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,piston_y-70);
+                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16,250);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,250-70);
                         ctx.stroke();
 
                         // connecting rod vertical-1
@@ -122,8 +117,8 @@
                         ctx.strokeStyle = crankCaseColor;
                         ctx.fillStyle = crankCaseColor;
                         ctx.lineWidth = 17;
-                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16 -15,piston_y-70);
-                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,piston_y-70);
+                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16 -15,250-70);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,250-70);
                         ctx.stroke();
 
                         if(flag === false){
