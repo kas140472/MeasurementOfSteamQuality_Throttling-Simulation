@@ -52,20 +52,6 @@
                         ctx.fillStyle = crankCaseColor;
                         ctx.lineWidth = 10;
 
-                        /*// left cylinder wall
-
-                        ctx.beginPath();
-                        ctx.moveTo(left_wall_x,left_wall_y_start);
-                        ctx.lineTo(left_wall_x,left_wall_y_end);
-                        ctx.stroke();
-
-                        // right cylinder wall
-
-                        ctx.beginPath();
-                        ctx.moveTo(right_wall_x,right_wall_y_start);
-                        ctx.lineTo(right_wall_x,right_wall_y_end);
-                        ctx.stroke();*/
-
                         // bottom cylinder wall
 
                         ctx.beginPath();
@@ -79,19 +65,7 @@
                         ctx.moveTo(left_wall_x,left_wall_y_start);
                         ctx.lineTo(right_wall_x,right_wall_y_start);
                         ctx.stroke();
-
-                        // piston
-
-                        ctx.beginPath();
-                        ctx.fillStyle = pistonColor;
-                        ctx.fillRect(piston_x+2,piston_y+step,piston_width-4,piston_height);
-                        ctx.stroke();
-
-                        /* // cavity
-                         ctx.beginPath();
-                         ctx.fillRect(piston_x+2,piston_y+piston_height+step,piston_width-4,87-step);
-                         ctx.stroke(); */
-
+                        
                         // connecting rod vertical-2
 
                         ctx.beginPath();
@@ -112,7 +86,7 @@
                         ctx.lineTo((6.75*(right_wall_x + left_wall_x))/16,185);
                         ctx.stroke();
 
-                        // connecting rod - middle-vertical
+                        // Throttling valve - middle-vertical
 
                         ctx.beginPath();
                         ctx.strokeStyle = pistonColor;
@@ -122,7 +96,7 @@
                         ctx.lineTo((8*(right_wall_x + left_wall_x))/16,step+140);
                         ctx.stroke();
 
-                        // connecting rod - middle-horizontal
+                        // Throttling valve - middle-horizontal
 
                         ctx.beginPath();
                         ctx.strokeStyle = pistonColor;
@@ -152,65 +126,8 @@
                         ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,piston_y-70);
                         ctx.stroke();
 
-                        var image = document.getElementById('graph');
-
-                        /*// graph y-axis
-
-                        ctx.beginPath();
-                        ctx.strokeStyle = '#17202A';
-                        ctx.fillStyle = '#17202A';
-                        ctx.lineWidth = 1;
-                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16-80,left_wall_y_end +20);
-                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16-80,left_wall_y_end+20+120);
-                        ctx.stroke();
-
-                        // graph x-axis
-
-                        ctx.beginPath();
-                        ctx.strokeStyle = '#17202A';
-                        ctx.fillStyle = '#17202A';
-                        ctx.lineWidth = 1;
-                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16-80,left_wall_y_end +20+120);
-                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16-80+120,left_wall_y_end+20+120);
-                        ctx.stroke();*/
-
-                        /*// graph liquid
-
-                        ctx.beginPath();
-                        ctx.fillStyle = '#1B4F72';
-                        ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+20,left_wall_y_end +120,28,200);
-                        ctx.stroke();*/
-
-                        // graph vapor
-
-                        /*ctx.beginPath();
-                        ctx.fillStyle = '#5D6D7E ';
-                        /*if(x==.9468)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +120,28,200);
-                        else if(x==0.94420)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +126,28,200);
-                        else if(x==0.94150)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +131,28,200);
-                        else if(x==0.97138)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +75,28,200);
-                        else if(x==0.96935)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +76,28,200);
-                        else if(x==0.96720)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +80,28,200);
-                        else if(x==0.99590)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +25,28,200);
-                        else if(x==0.99440)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +28.5,28,200);
-                        else if(x==0.99290)
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +31,28,200);
-                        else
-                            ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,left_wall_y_end +17,28,200);
-                        ctx.stroke();*/
-
                         if(flag === false){
 
-                            //work=/*(Math.round(step)*)*/p2;
-                            /*energy=parseInt(heat)-parseInt(work);*/
                             if(t2==100 && p2==0.01)
                             {energy=2687.50;
                             x=0.94680;}
@@ -265,7 +182,7 @@
 
                             if(p2>.05){
                                 for (step=0;step>-17;step-=0.2)
-                                {//step-=0.2;
+                                {
                                 document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
                                 document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+p2+" MPa";
                                 document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+t2+" °C";
@@ -277,7 +194,7 @@
                             else{
 
                                 for (step=0;step<17;step+=0.2)
-                                {//step-=0.2;
+                                {
                                     document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
                                     document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+p2+" MPa";
                                     document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+t2+" °C";
@@ -309,28 +226,9 @@
 
                 $('#l1spinner').spinner("disable");
                 $('#l2spinner').spinner("disable");
-                //$('#l3spinner').spinner("disable");
-                //$('#l4spinner').spinner("disable");
-
+                
                 $('#l1slider').slider("disable");
                 $('#l2slider').slider("disable");
-                //$('#l3slider').slider("disable");
-                //$('#l4slider').slider("disable");
-
-               /* if (work===0){
-                    if(heat===0){
-                        document.getElementById("p6").innerHTML="It is an isolated System";
-                    }
-                    // else{
-                    // document.getElementById("p6").innerHTML="The process is Isochoric";
-                    // }
-                }
-                else if (energy===0){
-                    document.getElementById("p6").innerHTML="The process is Isothermal";
-                }
-                else if(heat===0){
-                    document.getElementById("p6").innerHTML="The process is adiabatic";
-                } */
 
             }
 
@@ -340,22 +238,14 @@
 
                 $('#l1spinner').spinner("enable");
                 $('#l2spinner').spinner("enable");
-                //$('#l3spinner').spinner("enable");
-                //$('#l4spinner').spinner("enable");
-
+               
                 $('#l1slider').slider("enable");
                 $('#l2slider').slider("enable");
-                //$('#l3slider').slider("enable");
-                //$('#l4slider').slider("enable");
-
-                //document.getElementById("p6").innerHTML="";
-
+               
             }
         }
 
         function p1_val(){
-
-            //rodtravel=input;
             document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
         }
 
@@ -375,125 +265,32 @@
 
         function enthalpy1_val(){
             energy=0;
-            /*if(t2==100 && p2==0.01)
-            {energy=2687.50;}
-            if(t2==100 && p2==0.05)
-            {energy=2682.40;}
-            if(t2==100 && p2==0.09)
-            {energy=2677.12;}
-            if(t2==125 && p2==0.01)
-            {energy=2735.25;}
-            if(t2==125 && p2==0.05)
-            {energy=2731.30;}
-            if(t2==125 && p2==0.09)
-            {energy=2727.22;}
-            if(t2==150 && p2==0.01)
-            {energy=2783.00;}
-            if(t2==150 && p2==0.05)
-            {energy=2780.20;}
-            if(t2==150 && p2==0.09)
-            {energy=2777.32;}*/
             document.getElementById("p4").innerHTML="Enthalpy1 : "+energy+" kJ/kg";
 
         }
         function enthalpy2_val(){
             energy=0;
-            /*if(t2==100 && p2==0.01)
-            {energy=2687.50;}
-            if(t2==100 && p2==0.05)
-            {energy=2682.40;}
-            if(t2==100 && p2==0.09)
-            {energy=2677.12;}
-            if(t2==125 && p2==0.01)
-            {energy=2735.25;}
-            if(t2==125 && p2==0.05)
-            {energy=2731.30;}
-            if(t2==125 && p2==0.09)
-            {energy=2727.22;}
-            if(t2==150 && p2==0.01)
-            {energy=2783.00;}
-            if(t2==150 && p2==0.05)
-            {energy=2780.20;}
-            if(t2==150 && p2==0.09)
-            {energy=2777.32;}*/
             document.getElementById("p5").innerHTML="Enthalpy2 : "+energy+" kJ/kg";
 
         }
 
         function x_val(){
 
-            //work=parseInt(force*rodtravel);
-            /*if(t2==100 && p2==0.01)
-            {x=0.94680;}
-            if(t2==100 && p2==0.05)
-            {x=0.94420;}
-            if(t2==100 && p2==0.09)
-            {x=0.94150;}
-            if(t2==125 && p2==0.01)
-            {x=0.97138;}
-            if(t2==125 && p2==0.05)
-            {x=0.96935;}
-            if(t2==125 && p2==0.09)
-            {x=0.96720;}
-            if(t2==150 && p2==0.01)
-            {x=0.99590;}
-            if(t2==150 && p2==0.05)
-            {x=0.99440;}
-            if(t2==150 && p2==0.09)
-            {x=0.99290;}*/
-
             document.getElementById("p6").innerHTML="Quality of steam, x1 : "+0+" .";
 
         }
 
-        /* function randomise(){
-
-            let rand_distance = Math.floor(Math.random() * 81) - 40;
-            let rand_heat=Math.floor(Math.random() * 81) - 40;
-            let rand_force=Math.floor(Math.random() * 81) - 40;
-            if(energy === rand_heat - rand_distance*rand_force){
-
-                console.log(energy,rand_heat,rand_distance,rand_force);
-                heat=rand_heat;
-                rodtravel=rand_distance;
-                force=rand_force;
-
-                $('#l1spinner').spinner("value",rodtravel);
-                $('#l1slider').slider("value",rodtravel);
-
-                $('#l2spinner').spinner("value",force);
-                $('#l2slider').slider("value",force);
-
-                $('#l3spinner').spinner("value",heat);
-                $('#l3slider').slider("value",heat);
-
-                p1_val(rodtravel);
-                p2_val(force);
-                t2_val(heat);
-                x_val();
-
-            }
-            else{
-                randomise();
-            }
-        }*/
 
         function varinit()
         {
 
             varchange();
 
-            //Variable r1 slider and number input types
-
             $('#l1slider').slider("value", 0);
             $('#l1spinner').spinner("value", 0);
             $('#l2slider').slider("value", 0);
             $('#l2spinner').spinner("value", 0);
-            /*$('#l3slider').slider("value", 0);
-            $('#l3spinner').spinner("value", 0);
-            $('#l4slider').slider("value", 0);
-            $('#l4spinner').spinner("value", 0);*/
-
+           
             p2_val(.01);
             t2_val(100);
             p1_val();
@@ -506,8 +303,6 @@
         function varchange()
         {
 
-            // Variable r1 slider and number input types
-
             $('#l1slider').slider({ max : 150, min : 100, step : 25 });		    // slider initialisation : jQuery widget
             $('#l1spinner').spinner({ max : 150, min : 100, step : 25 });		    // number initialisation : jQuery widget
             $('#l2slider').slider({ max : 0.09, min : 0.01, step : 0.04 });		    // slider initialisation : jQuery widget
@@ -517,15 +312,10 @@
             // monitoring change in value and connecting slider and number
             // setting trace point coordinate arrays to empty on change of link length
 
-            // travel
-
             $( "#l1slider" ).on(  "slide",  function( e, ui ) {
                 $('#l1spinner').spinner("value",ui.value);
                 t2_val(ui.value);
                 x_val();
-                //$('#l4spinner').spinner("value",heat-work);
-                //$('#l4slider').slider("value",heat-work);
-                enthalpy2_val();
                 enthalpy1_val();
                 p1_val();
             });
@@ -534,8 +324,6 @@
                 $('#l1slider').slider("value",ui.value);
                 t2_val(ui.value);
                 x_val();
-                //$('#l4spinner').spinner("value",heat-work);
-                //$('#l4slider').slider("value",heat-work);
                 enthalpy2_val();
                 enthalpy1_val();
                 p1_val();
@@ -544,14 +332,10 @@
             $( "#l1spinner" ).on( "change", function() {
                 varchange() } );
 
-            // force
-
             $( "#l2slider" ).on(  "slide",  function( e, ui ) {
                 $('#l2spinner').spinner("value",ui.value);
                 p2_val(ui.value);
                 x_val();
-                //$('#l4spinner').spinner("value",heat-work);
-                //$('#l4slider').slider("value",heat-work);
                 enthalpy2_val();
                 enthalpy1_val();
                 p1_val();
@@ -561,8 +345,6 @@
                 $('#l2slider').slider("value",ui.value);
                 p2_val(ui.value);
                 x_val();
-                //$('#l4spinner').spinner("value",heat-work);
-                //$('#l4slider').slider("value",heat-work);
                 enthalpy2_val();
                 enthalpy1_val();
                 p1_val();
@@ -571,49 +353,10 @@
             $( "#l2spinner" ).on( "change", function() {
                 varchange() } );
 
-            // heat
-
-            /*$( "#l3slider" ).on(  "slide",  function( e, ui ) {
-                $('#l3spinner').spinner("value",ui.value);
-                t2_val(ui.value);
-                $('#l4spinner').spinner("value",heat-work);
-                $('#l4slider').slider("value",heat-work);
-                enthalpy2_val(heat-work);
-                enthalpy1_val(heat-work);
-            });*/
-
-            /*$( "#l3spinner" ).on( "spin",   function( e, ui ) {
-                $('#l3slider').slider("value",ui.value);
-                t2_val(ui.value);
-                $('#l4spinner').spinner("value",heat-work);
-                $('#l4slider').slider("value",heat-work);
-                enthalpy2_val(heat-work);
-                enthalpy1_val(heat-work);
-            });
-
-            $( "#l3spinner" ).on( "change", function() {
-                varchange() } );
-
-            // energy
-
-            $( "#l4slider" ).on(  "slide",  function( e, ui ) {
-                $('#l4spinner').spinner("value",ui.value);
-                enthalpy2_val(ui.value);
-                randomise();} );
-
-            $( "#l4spinner" ).on( "spin",   function( e, ui ) {
-                $('#l4slider').slider("value",ui.value);
-                enthalpy2_val(ui.value);
-                randomise();} );
-
-            $( "#l4spinner" ).on( "change", function() {
-                varchange();
-                randomise();} );*/
-
-            p1_val(); //$('#l4spinner').spinner("value")
-            p2_val($('#l2spinner').spinner("value"));
-            t2_val($('#l1spinner').spinner("value"));
-            enthalpy2_val(); //$('#l3spinner').spinner("value")
+            p1_val(); 
+            p2_val($('#l2spinner').spinner("value"));//$('#l2spinner').spinner("value")
+            t2_val($('#l1spinner').spinner("value"));//$('#l1spinner').spinner("value")
+            enthalpy2_val(); 
             x_val();
             enthalpy1_val();
 
@@ -625,8 +368,6 @@
 
             $('#l1slider').slider("value", $('#l1spinner').spinner('value'));  //updating slider location with change in spinner(debug)
             $('#l2slider').slider("value", $('#l2spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            //$('#l3slider').slider("value", $('#l3spinner').spinner('value'));  //updating slider location with change in spinner(debug)
-            //$('#l4slider').slider("value", $('#l4spinner').spinner('value'));  //updating slider location with change in spinner(debug)
 
         }
 
@@ -677,6 +418,7 @@
     <img class="state1"  src="throttling_img2.png" width="80px" height="12px"  alt="state1" id="state1"/>
     <img class="state11"  src="throttling_img11.png" width="40px" height="8px"  alt="state11" id="state11"/>
     <img class="state22"  src="throttling_img22.png" width="40px" height="7px"  alt="state22" id="state22"/>
+    <img class="state3"  src="throttling_img3.png" width="80px" height="23px"  alt="state3" id="state3"/>
     <!-- DND-Title of region for controls display -->
     <div id="ctrltitle">CONTROLS</div>
     <!-- Region for User controls of simulation -->
