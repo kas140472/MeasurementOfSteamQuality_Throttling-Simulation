@@ -53,11 +53,34 @@
                         ctx.lineTo(right_wall_x,right_wall_y_end);
                         ctx.stroke();
 
-                        // top cylinder wall
+                        // top cylinder wall-1
 
                         ctx.beginPath();
-                        ctx.moveTo(left_wall_x,left_wall_y_start);
-                        ctx.lineTo(right_wall_x,right_wall_y_start);
+                        ctx.moveTo(left_wall_x,left_wall_y_start+50);
+                        ctx.lineTo(right_wall_x/2,right_wall_y_start+50);
+                        ctx.stroke();
+                        // top cylinder wall-2
+
+                        ctx.beginPath();
+                        ctx.moveTo(left_wall_x*2+106,left_wall_y_start+50);
+                        ctx.lineTo(right_wall_x,right_wall_y_start+50);
+                        ctx.stroke();
+
+                        // connecting rod vertical-1-2
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 17;
+                        ctx.moveTo((9.15*(right_wall_x + left_wall_x))/16,left_wall_y_start);
+                        ctx.lineTo((9.15*(right_wall_x + left_wall_x))/16,left_wall_y_start+50);
+                        ctx.stroke();
+
+                        // connecting rod horizontal-1-2
+
+                        ctx.beginPath();
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16,left_wall_y_start);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,left_wall_y_start);
                         ctx.stroke();
                         
                         // connecting rod vertical-2
@@ -87,7 +110,7 @@
                         ctx.fillStyle = pistonColor;
                         ctx.lineWidth = 10;
                         ctx.moveTo((8*(right_wall_x + left_wall_x))/16,left_wall_y_start+step-53);
-                        ctx.lineTo((8*(right_wall_x + left_wall_x))/16,step+110);
+                        ctx.lineTo((8*(right_wall_x + left_wall_x))/16,step+115);
                         ctx.stroke();
 
                         // Throttling valve - middle-horizontal
@@ -95,9 +118,9 @@
                         ctx.beginPath();
                         ctx.strokeStyle = pistonColor;
                         ctx.fillStyle = pistonColor;
-                        ctx.lineWidth = 35;
-                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16 +15,step+110);
-                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -15,step+110);
+                        ctx.lineWidth = 28;
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16 +15,step+125);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -15,step+125);
                         ctx.stroke();
 
                         // connecting rod horizontal-1
