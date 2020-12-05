@@ -118,10 +118,13 @@
                         ctx.beginPath();
                         ctx.strokeStyle = pistonColor;
                         ctx.fillStyle = pistonColor;
-                        ctx.lineWidth = 28;
-                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16 +15,step+125);
-                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -15,step+125);
-                        ctx.stroke();
+                        ctx.lineWidth = 1;
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16 +15,step+130);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -25,step+130);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -12,step+100);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -77,step+100);
+                        ctx.lineTo((6.75*(right_wall_x + left_wall_x))/16 +23,step+130);
+                        ctx.fill();
 
                         // connecting rod horizontal-1
 
