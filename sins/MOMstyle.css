@@ -98,7 +98,7 @@ canvas#simscreen
 div#commentboxleft
 {
 	border-top-style: dotted;
-	border-top-width: 2px;
+	border-top-width: 1px;
 	border-top-color: #f6ebed;
 	position:absolute;
 	left:28px;
@@ -114,10 +114,10 @@ div#commentboxleft
 div#commentboxright
 {	
 	border-top-style: dotted;
-	border-top-width: 2px;
+	border-top-width: 1px;
 	border-top-color: #f6ebed;	
 	border-left-style: dotted;
-	border-left-width: 2px;
+	border-left-width: 1px;
 	border-left-color: #f6ebed;
 	position:absolute;
 	left:313px;
@@ -155,9 +155,9 @@ input#l4spinner{
 
 #playpausebutton
 {
-	position: inherit;
+	position: absolute;
 	left: 45px;
-	top: 30px;
+	top: 50px;
 
 }
 
@@ -167,7 +167,7 @@ input#l4spinner{
 	padding-left:250px;
 	position: inherit;
 	left: 313px;
-	top: 505px;
+	top: 485px;
 }
 
 .state2
@@ -219,7 +219,7 @@ input#l4spinner{
 {
 	position: relative;
 	left: 110px;
-	top: 30px;
+	top: 50px;
 
 }
 
@@ -344,6 +344,35 @@ input#l4spinner{
 {
 	position: absolute;
 	left: 250px; top:100px;
+}
+
+.tooltip {
+	position: absolute;
+	display: inline-block;
+	border-bottom: 0px dotted black;
+	font-family: Comic Sans MS;
+	font-size:14px;
+}
+
+.tooltip .tooltiptext {
+	font-family: Comic Sans MS;
+	font-size:12px;
+	visibility: hidden;
+	width: 100px;
+	background-color: black;
+	color: #fff;
+	border-radius: 6px;
+	padding: 10px 10px 10px 10px;
+
+	/* Position the tooltip */
+	position: absolute;
+	left: 0px;
+	top:25px;
+	z-index: 100;
+}
+
+.tooltip:hover .tooltiptext {
+	visibility: visible;
 }
 
 /* Theme edited for Simulation UI */
