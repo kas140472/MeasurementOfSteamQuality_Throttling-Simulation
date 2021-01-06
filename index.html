@@ -498,6 +498,34 @@
     <div id="controls">
         <img id="playpausebutton" onclick="simstate();" src="sins/blueplaydull.png" />
         <img id="rotationbutton" onclick="location.reload();" src="sins/bluecwdull.png" />
+
+        <div style="position:relative; left: 15px;top:-80px;">
+
+            <span class="tooltip" style="border-bottom:0px dotted ; color:black;top: 24px; text-align:justify;left: 10px">Variables
+			<span class="tooltiptext" style="left: 0px;width: 400px">
+            Variables<br><br>
+			P1 = Inlet/initial pressure<br>
+                P2 = Outlet/final pressure<br>
+                T2 = Outlet/final temperature<br>
+                h1 = specific enthalpy of saturated state ( at inlet )<br>
+                h2 = specific enthalpy of superheated state ( at outlet )<br>
+                x1 = Quality of steam at inlet<br>
+            h<sub>f</sub> = Specific enthalpy of saturated liquid state at pressure P1 (kJ/kg)<br>
+            h<sub>g</sub> = Specific enthalpy of saturated vapor state at pressure P1 (kJ/kg)<br>
+            h<sub>fg</sub> = Change in specific enthalpy during phase transition (kJ/kg)<br>
+			</span>
+			</span>
+
+            <span class="tooltip" style="border-bottom:0px dotted ; color:black;top: 24px; text-align:justify;left: 90px">Formulae
+			<span class="tooltiptext" style="left: -60px; width: 100px">
+            Formulae<br><br>
+                h1 = h2<br>
+            h<sub>fg</sub> = h<sub>g</sub>-h<sub>f</sub><br>
+            x = (h2-h<sub>f</sub>)/h<sub>fg</sub><br>
+			</span>
+			</span>
+        </div>
+
     </div>
     <!-- DND-Copyright display-->
     <div id="copyright" title="Developer : SOLVEr"> Copyright &copy; SOLVE The Virtual Lab @ NITK Surathkal </div>
