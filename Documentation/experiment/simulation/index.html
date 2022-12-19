@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Throttling</title>
+    <link rel="stylesheet" href="css/MOMstyle.css" />
+    <script src='js/jquery.min.js'></script>
+    <script src='js/jquery-ui.min.js'></script>
+    <script type="text/javascript" >
+
+        var p2 =0;
+        var t2 =0;
+        var energy =0;
+        var x =0;
+        var flag=true;
+        var step=0;
+
+        function dummy() {
+
+            window.requestAnimFrame = (function(){
+                return window.requestAnimationFrame     ||
+                    window.webkitRequestAnimationFrame  ||
+                    window.mozRequestAnimationFrame     ||
+                    window.oRequestAnimationFrame       ||
+                    window.msRequestAnimationFrame      ||
+                    function( callback ) {
+                        window.setTimeout(callback, 1000 / 60);
+                    };
+            })();
+
+            var canvas = document.getElementById('simscreen'),
+                ctx = canvas.getContext('2d'),
+                crankCaseColor = '#9EA18C',
+                pistonColor = '#87CEEB',
+                left_wall_x=100,
+                left_wall_y_start=70,
+                left_wall_y_end=220,
+                right_wall_x=450,
+                right_wall_y_start=70,
+                right_wall_y_end=220
+
+                cylinder = {
+                    draw : function () {
+
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 10;
+
+                        // bottom cylinder wall
+
+                        ctx.beginPath();
+                        ctx.moveTo(left_wall_x,left_wall_y_end);
+                        ctx.lineTo(right_wall_x,right_wall_y_end);
+                        ctx.stroke();
+
+                        // top cylinder wall-1
+
+                        ctx.beginPath();
+                        ctx.moveTo(left_wall_x,left_wall_y_start+50);
+                        ctx.lineTo(right_wall_x/2,right_wall_y_start+50);
+                        ctx.stroke();
+                        // top cylinder wall-2
+
+                        ctx.beginPath();
+                        ctx.moveTo(left_wall_x*2+106,left_wall_y_start+50);
+                        ctx.lineTo(right_wall_x,right_wall_y_start+50);
+                        ctx.stroke();
+
+                        // connecting rod vertical-1-2
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 17;
+                        ctx.moveTo((9.15*(right_wall_x + left_wall_x))/16,left_wall_y_start);
+                        ctx.lineTo((9.15*(right_wall_x + left_wall_x))/16,left_wall_y_start+50);
+                        ctx.stroke();
+
+                        // connecting rod horizontal-1-2
+
+                        ctx.beginPath();
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16,left_wall_y_start);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,left_wall_y_start);
+                        ctx.stroke();
+
+                        // connecting rod vertical-2
+
+                        ctx.beginPath();
+                        ctx.strokeStyle =crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 17;
+                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16,220);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,220-70);
+                        ctx.stroke();
+
+                        // connecting rod vertical-1
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 17;
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16,left_wall_y_start);
+                        ctx.lineTo((6.75*(right_wall_x + left_wall_x))/16,155);
+                        ctx.stroke();
+
+                        // Throttling valve - middle-vertical
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = pistonColor;
+                        ctx.fillStyle = pistonColor;
+                        ctx.lineWidth = 10;
+                        ctx.moveTo((8*(right_wall_x + left_wall_x))/16,left_wall_y_start+step-53);
+                        ctx.lineTo((8*(right_wall_x + left_wall_x))/16,step+115);
+                        ctx.stroke();
+
+                        // Throttling valve - middle-horizontal
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = pistonColor;
+                        ctx.fillStyle = pistonColor;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16 +15,step+130);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -25,step+130);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -12,step+100);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16 -77,step+100);
+                        ctx.lineTo((6.75*(right_wall_x + left_wall_x))/16 +23,step+130);
+                        ctx.fill();
+
+                        // connecting rod horizontal-1
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 17;
+                        ctx.moveTo((6.75*(right_wall_x + left_wall_x))/16,155);
+                        ctx.lineTo((6.75*(right_wall_x + left_wall_x))/16 + 15,155);
+                        ctx.stroke();
+
+                        // connecting rod horizontal-2
+
+                        ctx.beginPath();
+                        ctx.strokeStyle = crankCaseColor;
+                        ctx.fillStyle = crankCaseColor;
+                        ctx.lineWidth = 17;
+                        ctx.moveTo((9.25*(right_wall_x + left_wall_x))/16 -15,220-70);
+                        ctx.lineTo((9.25*(right_wall_x + left_wall_x))/16,220-70);
+                        ctx.stroke();
+
+                        if(flag === false){
+
+                            if(t2==100 && p2==0.01)
+                            {energy=2687.50;
+                            x=0.94680;}
+                            if(t2==100 && p2==0.02)
+                            {energy=2686.225;
+                                x=0.94619;}
+                            if(t2==100 && p2==0.03)
+                            {energy=2684.95;
+                                x=0.94554;}
+                            if(t2==100 && p2==0.04)
+                            {energy=2683.675;
+                                x=0.944885;}
+                            if(t2==100 && p2==0.05)
+                            {energy=2682.4;
+                                x=0.944230;}
+                            if(t2==100 && p2==0.06)
+                            {energy=2681.08;
+                                x=0.94355;}
+                            if(t2==125 && p2==0.01)
+                            {energy=2735.25;
+                                x=0.97138;}
+                            if(t2==125 && p2==0.02)
+                            {energy=2734.2625;
+                                x=0.97087;}
+                            if(t2==125 && p2==0.03)
+                            {energy=2733.275;
+                                x=0.97036;}
+                            if(t2==125 && p2==0.04)
+                            {energy=2732.2875;
+                                x=0.96986;}
+                            if(t2==125 && p2==0.05)
+                            {energy=2731.30;
+                                x=0.96935;}
+                            if(t2==125 && p2==0.06)
+                            {energy=2730.2799;
+                                x=0.96882;}
+                            if(t2==150 && p2==0.01)
+                            {energy=2783.00;
+                                x=0.99591;}
+                            if(t2==150 && p2==0.02)
+                            {energy=2782.3;
+                                x=0.99555;}
+                            if(t2==150 && p2==0.03)
+                            {energy=2781.6;
+                                x=0.99519;}
+                            if(t2==150 && p2==0.04)
+                            {energy=2780.9;
+                                x=0.99483;}
+                            if(t2==150 && p2==0.05)
+                            {energy=2780.20;
+                                x=0.99447;}
+                            if(t2==150 && p2==0.06)
+                            {energy=2779.48;
+                                x=0.99410;}
+
+                            ctx.beginPath();
+                            ctx.fillStyle = '#5D6D7E ';
+                            if(x==.9468)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +117,28,200);
+                            else if(x==0.94619)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +119,28,200);
+                            else if(x==0.94554)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +119.5,28,200);
+                            else if(x==0.944885)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +121,28,200);
+                            else if(x==0.944230)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +122,28,200);
+                            else if(x==0.94355)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +124,28,200);
+                            else if(x==0.97138)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +70,28,200);
+                            else if(x==0.97087)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +71.5,28,200);
+                            else if(x==0.97036)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +71.8,28,200);
+                            else if(x==0.96986)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +72,28,200);
+                            else if(x==0.96935)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +72.8,28,200);
+                            else if(x==0.96882)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +74,28,200);
+                            else if(x==0.99591)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +22.5,28,200);
+                            else if(x==0.99555)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +23,28,200);
+                            else if(x==0.99519)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +23.5,28,200);
+                            else if(x==0.99483)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +24.3,28,200);
+                            else if(x==0.99447)
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +25,28,200);
+                            else //0.99410
+                                ctx.fillRect((9.25*(right_wall_x + left_wall_x))/16-80+30,250 +26,28,200);
+                            ctx.stroke();
+
+                            if(p2>.03){
+                                // for (step=0;step>-17;step-=0.2)
+                                if (step>-17)
+                                {
+                                    step-=0.2
+                                    document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
+                                    document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+p2+" MPa";
+                                    document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+t2+" °C";
+                                    document.getElementById("p4").innerHTML="Enthalpy, h1 : "+energy+" kJ/kg";
+                                    document.getElementById("p5").innerHTML="Enthalpy, h2 : "+energy+" kJ/kg";
+                                    document.getElementById("p6").innerHTML="Quality of steam, x1 : "+x+"";
+                                }
+
+                            }
+                            else{
+
+                                // for (step=0;step<17;step+=0.2)
+                                if (step<17)
+                                {
+                                    step+=0.2;
+                                    document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
+                                    document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+p2+" MPa";
+                                    document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+t2+" °C";
+                                    document.getElementById("p4").innerHTML="Enthalpy, h1 : "+energy+" kJ/kg";
+                                    document.getElementById("p5").innerHTML="Enthalpy, h2 : "+energy+" kJ/kg";
+                                    document.getElementById("p6").innerHTML="Quality of steam, x1 : "+x+"";
+                                }
+
+                            }
+                        }
+                        else{
+                            step=0;
+                        }
+                    }
+                };
+
+            (function animloop(){
+                requestAnimFrame(animloop);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                cylinder.draw();
+            })();
+
+        }
+
+        function simstate() {
+
+            if (flag===true){
+                document.getElementById('playpausebutton').src="images/bluepausedull.png";
+                flag=false;
+
+                $('#l1spinner').spinner("disable");
+                $('#l2spinner').spinner("disable");
+
+                $('#l1slider').slider("disable");
+                $('#l2slider').slider("disable");
+
+            }
+
+            else {
+                document.getElementById('playpausebutton').src="images/blueplaydull.png";
+                flag=true;
+
+                $('#l1spinner').spinner("enable");
+                $('#l2spinner').spinner("enable");
+
+                $('#l1slider').slider("enable");
+                $('#l2slider').slider("enable");
+
+            }
+        }
+
+        function p1_val(){
+            document.getElementById("p1").innerHTML="Inlet pressure(P1) : 1.5 MPa";
+        }
+
+        function p2_val(input){
+
+            p2=input;
+            document.getElementById("p2").innerHTML="Outlet pressure(P2) : "+0+" MPa";
+
+        }
+
+        function t2_val(input){
+
+            t2=input;
+            document.getElementById("p3").innerHTML="Outlet temperature(T2) : "+0+" °C";
+
+        }
+
+        function enthalpy1_val(){
+            energy=0;
+            document.getElementById("p4").innerHTML="Enthalpy, h1 : "+energy+" kJ/kg";
+
+        }
+        function enthalpy2_val(){
+            energy=0;
+            document.getElementById("p5").innerHTML="Enthalpy, h2 : "+energy+" kJ/kg";
+
+        }
+
+        function x_val(){
+
+            document.getElementById("p6").innerHTML="Quality of steam, x1 : "+0+"";
+
+        }
+
+
+        function varinit()
+        {
+
+            varchange();
+
+            $('#l1slider').slider("value", 0);
+            $('#l1spinner').spinner("value", 0);
+            $('#l2slider').slider("value", 0);
+            $('#l2spinner').spinner("value", 0);
+
+            p2_val(.01);
+            t2_val(100);
+            p1_val();
+            x_val();
+            enthalpy2_val();
+            enthalpy1_val();
+
+        }
+
+        function varchange()
+        {
+
+            $('#l1slider').slider({ max : 150, min : 100, step : 25 });		    // slider initialisation : jQuery widget
+            $('#l1spinner').spinner({ max : 150, min : 100, step : 25 });		    // number initialisation : jQuery widget
+            $('#l2slider').slider({ max : 0.06, min : 0.01, step : 0.01 });		    // slider initialisation : jQuery widget
+            $('#l2spinner').spinner({ max : 0.06, min : 0.01, step : 0.01 });		    // number initialisation : jQuery widget
+
+            // monitoring change in value and connecting slider and number
+            // monitoring change in value and connecting slider and number
+            // setting trace point coordinate arrays to empty on change of link length
+
+            $( "#l1slider" ).on(  "slide",  function( e, ui ) {
+                $('#l1spinner').spinner("value",ui.value);
+                t2_val(ui.value);
+                x_val();
+                enthalpy1_val();
+                p1_val();
+            });
+
+            $( "#l1spinner" ).on( "spin",   function( e, ui ) {
+                $('#l1slider').slider("value",ui.value);
+                t2_val(ui.value);
+                x_val();
+                enthalpy2_val();
+                enthalpy1_val();
+                p1_val();
+            });
+
+            $( "#l1spinner" ).on( "change", function() {
+                varchange() } );
+
+            $( "#l2slider" ).on(  "slide",  function( e, ui ) {
+                $('#l2spinner').spinner("value",ui.value);
+                p2_val(ui.value);
+                x_val();
+                enthalpy2_val();
+                enthalpy1_val();
+                p1_val();
+            });
+
+            $( "#l2spinner" ).on( "spin",   function( e, ui ) {
+                $('#l2slider').slider("value",ui.value);
+                p2_val(ui.value);
+                x_val();
+                enthalpy2_val();
+                enthalpy1_val();
+                p1_val();
+            });
+
+            $( "#l2spinner" ).on( "change", function() {
+                varchange() } );
+
+            p1_val();
+            p2_val($('#l2spinner').spinner("value"));//$('#l2spinner').spinner("value")
+            t2_val($('#l1spinner').spinner("value"));//$('#l1spinner').spinner("value")
+            enthalpy2_val();
+            x_val();
+            enthalpy1_val();
+
+            varupdate();
+        }
+
+        function varupdate()
+        {
+
+            $('#l1slider').slider("value", $('#l1spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+            $('#l2slider').slider("value", $('#l2spinner').spinner('value'));  //updating slider location with change in spinner(debug)
+
+        }
+
+    </script>
+</head>
+
+<body onload="varinit();dummy();">
+
+<!-- Defining Container for Simulation -->
+<noscript>
+    The simulation requires JavaScript to be enabled.
+</noscript>
+<div id="container">
+    <!-- Replace TITLE with simulation title to be displayed next to logo-->
+    <div id="simtitle">Measurement of Steam Quality</div>
+    <!-- Region for simulation display -->
+    <canvas id="simscreen" height="400px" width="550px"></canvas>
+    <div id="titleincanvas"></div>
+    <!-- Region for comment / question prompts -->
+    <div id="commentboxleft">
+        <p id="p1" style="line-height:0.3"></p>
+        <p id="p2" style="line-height:0.3"></p>
+        <p id="p3" style="line-height:0.3"></p>
+    </div>
+    <div id="commentboxright">
+        <p id="p4" style="line-height:0.3"></p>
+        <p id="p5" style="line-height:0.3"></p>
+        <p id="p6" style="line-height:0.3"></p>
+    </div>
+
+    <!-- DND-Title of region for variables display -->
+    <div id="vartitle">VARIABLES</div>
+
+    <!-- Region for Input parameters of simulation -->
+    <div id="variables">
+        <div class="variable">
+            <div class="varname"><p title="Link Length" style="font-size:105%;">T2 (°C)</p>
+                <br>
+                <input id="l1spinner"></div>
+            <br>
+            <div id="l1slider"></div>
+            <br>
+            <div class="varname"><p title="Link Length" style="font-size:105%;">P2 (MPa)</p>
+                <br>
+                <input id="l2spinner"></div>
+            <br>
+            <div id="l2slider"></div>
+        </div>
+    </div>
+    <img class="graph"  src="images/graph0.4.png" width="150px" height="150px"  alt="graph" id="graph"/>
+    <img class="state2"  src="images/throttling_img1.png" width="80px" height="30px"  alt="state2" id="state2"/>
+    <img class="state1"  src="images/throttling_img2.png" width="80px" height="12px"  alt="state1" id="state1"/>
+    <img class="state11"  src="images/throttling_img11.png" width="40px" height="8px"  alt="state11" id="state11"/>
+    <img class="state22"  src="images/throttling_img22.png" width="40px" height="7px"  alt="state22" id="state22"/>
+    <img class="state3"  src="images/throttling_img3.png" width="80px" height="23px"  alt="state3" id="state3"/>
+    <!-- DND-Title of region for controls display -->
+    <div id="ctrltitle">CONTROLS</div>
+    <!-- Region for User controls of simulation -->
+    <div id="controls">
+        <img id="playpausebutton" onclick="simstate();" src="images/blueplaydull.png" />
+        <img id="rotationbutton" onclick="location.reload();" src="images/bluecwdull.png" />
+
+        <div style="position:relative; left: 15px;top:-80px;">
+
+            <button class="tooltip" style="border:1px solid darkred; color:black;top: 24px; text-align:justify;left: 10px">Symbols
+			<span class="tooltiptext" style="left: 0px;width: 400px">
+            Symbols<br><br>
+			P1 = Inlet/initial pressure<br>
+                P2 = Outlet/final pressure<br>
+                T2 = Outlet/final temperature<br>
+                h1 = specific enthalpy of saturated state ( at inlet )<br>
+                h2 = specific enthalpy of superheated state ( at outlet )<br>
+                x1 = Quality of steam at inlet<br>
+            h<sub>f</sub> = Specific enthalpy of saturated liquid state at pressure P1 (kJ/kg)<br>
+            h<sub>g</sub> = Specific enthalpy of saturated vapor state at pressure P1 (kJ/kg)<br>
+            h<sub>fg</sub> = Change in specific enthalpy during phase transition (kJ/kg)<br>
+			</span>
+    </button>
+
+            <button class="tooltip" style="border:1px solid darkred; color:black;top: 24px; text-align:justify;left: 90px">Formulae
+			<span class="tooltiptext" style="left: -60px; width: 100px">
+            Formulae<br><br>
+                h1 = h2<br>
+            h<sub>fg</sub> = h<sub>g</sub>-h<sub>f</sub><br>
+            x = (h2-h<sub>f</sub>)/h<sub>fg</sub><br>
+			</span>
+    </button>
+        </div>
+
+    </div>
+    <!-- DND-Copyright display-->
+    <div id="copyright" title="Developer : SOLVEr"> Copyright &copy; SOLVE The Virtual Lab @ NITK Surathkal </div>
+
+</div><!-- Container div close -->
+</body>
+</html>
